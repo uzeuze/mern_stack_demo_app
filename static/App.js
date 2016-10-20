@@ -1,17 +1,17 @@
 var ResolutionRow = React.createClass({
-  displayName: "ResolutionRow",
+  displayName: 'ResolutionRow',
 
   render: function () {
     return React.createElement(
-      "tr",
+      'tr',
       null,
       React.createElement(
-        "td",
+        'td',
         null,
         this.props.resolution.name
       ),
       React.createElement(
-        "td",
+        'td',
         null,
         this.props.resolution.status
       )
@@ -20,50 +20,50 @@ var ResolutionRow = React.createClass({
 });
 
 var ResoulitionFilter = React.createClass({
-  displayName: "ResoulitionFilter",
+  displayName: 'ResoulitionFilter',
 
   render: function () {
     return React.createElement(
-      "div",
+      'div',
       null,
-      "Filter"
+      'Filter'
     );
   }
 });
 
 var ResolutionTable = React.createClass({
-  displayName: "ResolutionTable",
+  displayName: 'ResolutionTable',
 
   render: function () {
     var resolutionRows = this.props.data.map(function (resolution) {
       return React.createElement(ResolutionRow, { key: resolution.id, resolution: resolution });
     });
     return React.createElement(
-      "div",
+      'div',
       null,
       React.createElement(
-        "table",
+        'table',
         null,
         React.createElement(
-          "thead",
+          'thead',
           null,
           React.createElement(
-            "tr",
+            'tr',
             null,
             React.createElement(
-              "th",
+              'th',
               null,
-              "Name"
+              'Name'
             ),
             React.createElement(
-              "th",
+              'th',
               null,
-              "Status"
+              'Status'
             )
           )
         ),
         React.createElement(
-          "tbody",
+          'tbody',
           null,
           resolutionRows
         )
@@ -73,19 +73,54 @@ var ResolutionTable = React.createClass({
 });
 
 var ResolutionAdd = React.createClass({
-  displayName: "ResolutionAdd",
+  displayName: 'ResolutionAdd',
 
+  getInitialState: function () {
+    return { name: '', status: '' };
+  },
+  handleNameChange: function (e) {
+    this.setState({ name: e.target.value });
+  },
+  handleStatusChange: function (e) {
+    this.setState({ status: e.target.value });
+  },
+  handleSubmit: function (event) {
+    event.preventDefault();
+    var name = this.state.name.trim();
+    var status = this.state.status.trim();
+    if (!name || !status) {
+      return;
+    }
+    this.props.addResolution({ name: name, status: status });
+    this.setState({ name: '', status: '' });
+  },
   render: function () {
     return React.createElement(
-      "div",
+      'div',
       null,
-      "Add"
+      React.createElement(
+        'form',
+        { name: 'resolutionAdd', onSubmit: this.handleSubmit },
+        React.createElement('input', {
+          type: 'text',
+          placeholder: 'Resolution Name',
+          value: this.state.name,
+          onChange: this.handleNameChange
+        }),
+        React.createElement('input', {
+          type: 'text',
+          placeholder: 'Status',
+          value: this.state.status,
+          onChange: this.handleStatusChange
+        }),
+        React.createElement('input', { type: 'submit', value: 'Add Resolution' })
+      )
     );
   }
 });
 
 var ResolutionList = React.createClass({
-  displayName: "ResolutionList",
+  displayName: 'ResolutionList',
 
   getInitialState: function () {
     return { data: [{ id: 1, name: "React", status: "Incomplete" }, { id: 2, name: "MongoDB", status: "Incomplete" }, { id: 3, name: "Express", status: "Incomplete" }] };
@@ -104,15 +139,15 @@ var ResolutionList = React.createClass({
   },
   render: function () {
     return React.createElement(
-      "div",
+      'div',
       null,
       React.createElement(ResoulitionFilter, null),
       React.createElement(ResolutionTable, { data: this.state.data }),
-      React.createElement(ResolutionAdd, null),
+      React.createElement(ResolutionAdd, { addResolution: this.addResolution }),
       React.createElement(
-        "button",
+        'button',
         { onClick: this.testResolution },
-        "Add Test Data"
+        'Add Test Data'
       )
     );
   }
