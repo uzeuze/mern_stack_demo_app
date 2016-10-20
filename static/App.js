@@ -132,10 +132,20 @@ var ResolutionList = React.createClass({
   },
   addResolution: function (resolution) {
     console.log('Adding resolution ' + resolution);
-    resolution.id = this.state.data.length + 1;
-    var newData = this.state.data.slice();
-    newData.push(resolution);
-    this.setState({ data: newData });
+    $.ajax({
+      type: 'POST', url: '/api/resolutions', contentType: 'application/json',
+      data: JSON.stringify(resolution),
+      success: function (data) {
+        var resolution = data;
+        // We're advised not to modify the state, it's immutable. So, make a copy.
+        var resolutionsModified = this.state.data.concat(resolution);
+        this.setState({ data: resolutionsModified });
+      }.bind(this),
+      error: function (xhr, status, err) {
+        // ideally, show error to user.
+        console.log("Error adding bug:", err);
+      }
+    });
   },
   render: function () {
     return React.createElement(
