@@ -58,12 +58,25 @@ var ResolutionList = React.createClass({
       {id: 3, name: "Express", status: "Incomplete"},
     ]});
   },
+  testResolution: function(){
+    var testResolution = {id: this.state.data.length+1,
+       name: "Test Resolution",
+       status: "Complete"};
+    this.addResolution(testResolution);
+  },
+  addResolution: function(resolution){
+    console.log('Adding resolution ' + resolution);
+    var newData = this.state.data.slice();
+    newData.push(resolution);
+    this.setState({data: newData});
+  },
   render: function () {
     return (
       <div>
         <ResoulitionFilter />
         <ResolutionTable data={this.state.data}/>
         <ResolutionAdd />
+        <button onClick={this.testResolution}>Add Test Data</button>
       </div>
     );
   }
