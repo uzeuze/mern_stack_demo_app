@@ -123,7 +123,12 @@ var ResolutionList = React.createClass({
   displayName: 'ResolutionList',
 
   getInitialState: function () {
-    return { data: [{ id: 1, name: "React", status: "Incomplete" }, { id: 2, name: "MongoDB", status: "Incomplete" }, { id: 3, name: "Express", status: "Incomplete" }] };
+    return { data: [] };
+  },
+  componentDidMount: function () {
+    $.ajax('/api/resolutions').done(function (data) {
+      this.setState({ data: data });
+    }.bind(this));
   },
   addResolution: function (resolution) {
     console.log('Adding resolution ' + resolution);
