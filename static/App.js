@@ -1,3 +1,4 @@
+var resolutions = [{ id: 1, name: "React", status: "Incomplete" }, { id: 2, name: "MongoDB", status: "Incomplete" }];
 var ResolutionRow = React.createClass({
   displayName: "ResolutionRow",
 
@@ -8,7 +9,12 @@ var ResolutionRow = React.createClass({
       React.createElement(
         "td",
         null,
-        this.props.name
+        this.props.resolution.name
+      ),
+      React.createElement(
+        "td",
+        null,
+        this.props.resolution.status
       )
     );
   }
@@ -30,6 +36,9 @@ var ResolutionTable = React.createClass({
   displayName: "ResolutionTable",
 
   render: function () {
+    var resolutionRows = this.props.data.map(function (resolution) {
+      return React.createElement(ResolutionRow, { key: resolution.id, resolution: resolution });
+    });
     return React.createElement(
       "div",
       null,
@@ -46,14 +55,18 @@ var ResolutionTable = React.createClass({
               "th",
               null,
               "Name"
+            ),
+            React.createElement(
+              "th",
+              null,
+              "Status"
             )
           )
         ),
         React.createElement(
           "tbody",
           null,
-          React.createElement(ResolutionRow, { name: "Test1" }),
-          React.createElement(ResolutionRow, { name: "Test2" })
+          resolutionRows
         )
       )
     );
@@ -80,10 +93,10 @@ var ResolutionList = React.createClass({
       "div",
       null,
       React.createElement(ResoulitionFilter, null),
-      React.createElement(ResolutionTable, null),
+      React.createElement(ResolutionTable, { data: this.props.data }),
       React.createElement(ResolutionAdd, null)
     );
   }
 });
 
-ReactDOM.render(React.createElement(ResolutionList, null), document.getElementById('main'));
+ReactDOM.render(React.createElement(ResolutionList, { data: resolutions }), document.getElementById('main'));
