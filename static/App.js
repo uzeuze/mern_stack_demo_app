@@ -1,45 +1,83 @@
-var ResoulitionFilter = React.createClass({
-  displayName: 'ResoulitionFilter',
+var ResolutionRow = React.createClass({
+  displayName: "ResolutionRow",
 
   render: function () {
     return React.createElement(
-      'div',
+      "tr",
       null,
-      'Filter'
+      React.createElement(
+        "td",
+        null,
+        this.props.name
+      )
+    );
+  }
+});
+
+var ResoulitionFilter = React.createClass({
+  displayName: "ResoulitionFilter",
+
+  render: function () {
+    return React.createElement(
+      "div",
+      null,
+      "Filter"
     );
   }
 });
 
 var ResolutionTable = React.createClass({
-  displayName: 'ResolutionTable',
+  displayName: "ResolutionTable",
 
   render: function () {
     return React.createElement(
-      'div',
+      "div",
       null,
-      'Table'
+      React.createElement(
+        "table",
+        null,
+        React.createElement(
+          "thead",
+          null,
+          React.createElement(
+            "tr",
+            null,
+            React.createElement(
+              "th",
+              null,
+              "Name"
+            )
+          )
+        ),
+        React.createElement(
+          "tbody",
+          null,
+          React.createElement(ResolutionRow, { name: "Test1" }),
+          React.createElement(ResolutionRow, { name: "Test2" })
+        )
+      )
     );
   }
 });
 
 var ResolutionAdd = React.createClass({
-  displayName: 'ResolutionAdd',
+  displayName: "ResolutionAdd",
 
   render: function () {
     return React.createElement(
-      'div',
+      "div",
       null,
-      'Add'
+      "Add"
     );
   }
 });
 
 var ResolutionList = React.createClass({
-  displayName: 'ResolutionList',
+  displayName: "ResolutionList",
 
   render: function () {
     return React.createElement(
-      'div',
+      "div",
       null,
       React.createElement(ResoulitionFilter, null),
       React.createElement(ResolutionTable, null),

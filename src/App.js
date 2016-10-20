@@ -1,3 +1,13 @@
+var ResolutionRow = React.createClass({
+  render: function() {
+    return (
+      <tr>
+        <td>{this.props.name}</td>
+      </tr>
+    );
+  }
+});
+
 var ResoulitionFilter = React.createClass({
     render: function() {
       return (
@@ -9,7 +19,19 @@ var ResoulitionFilter = React.createClass({
 var ResolutionTable = React.createClass({
   render: function() {
     return (
-      <div>Table</div>
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ResolutionRow name="Test1"/>
+            <ResolutionRow name="Test2"/>
+          </tbody>
+        </table>
+      </div>
     );
   }
 });
