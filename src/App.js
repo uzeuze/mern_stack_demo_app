@@ -1,4 +1,14 @@
+var ResolutionList = React.createClass({
+  render: function () {
+    return (
+      <div>
+        Resolution List
+      </div>
+    );
+  }
+});
+
 ReactDOM.render(
-  <h1>Hello World</h1>,
+  <ResolutionList />,
   document.getElementById('main')
 );

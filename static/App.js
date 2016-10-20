@@ -1,5 +1,13 @@
-ReactDOM.render(React.createElement(
-  'h1',
-  null,
-  'Hello World'
-), document.getElementById('main'));
+var ResolutionList = React.createClass({
+  displayName: 'ResolutionList',
+
+  render: function () {
+    return React.createElement(
+      'div',
+      null,
+      'Resolution List'
+    );
+  }
+});
+
+ReactDOM.render(React.createElement(ResolutionList, null), document.getElementById('main'));
