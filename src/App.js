@@ -1,7 +1,3 @@
-var resolutions = [
-  {id: 1, name: "React", status: "Incomplete"},
-  {id: 2, name: "MongoDB", status: "Incomplete"}
-];
 var ResolutionRow = React.createClass({
   render: function() {
     return (
@@ -55,11 +51,18 @@ var ResolutionAdd = React.createClass({
 });
 
 var ResolutionList = React.createClass({
+  getInitialState: function() {
+    return ({data: [
+      {id: 1, name: "React", status: "Incomplete"},
+      {id: 2, name: "MongoDB", status: "Incomplete"},
+      {id: 3, name: "Express", status: "Incomplete"},
+    ]});
+  },
   render: function () {
     return (
       <div>
         <ResoulitionFilter />
-        <ResolutionTable data={this.props.data}/>
+        <ResolutionTable data={this.state.data}/>
         <ResolutionAdd />
       </div>
     );
@@ -67,6 +70,6 @@ var ResolutionList = React.createClass({
 });
 
 ReactDOM.render(
-  <ResolutionList data={resolutions}/>,
+  <ResolutionList />,
   document.getElementById('main')
 );

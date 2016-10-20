@@ -1,4 +1,3 @@
-var resolutions = [{ id: 1, name: "React", status: "Incomplete" }, { id: 2, name: "MongoDB", status: "Incomplete" }];
 var ResolutionRow = React.createClass({
   displayName: "ResolutionRow",
 
@@ -88,15 +87,18 @@ var ResolutionAdd = React.createClass({
 var ResolutionList = React.createClass({
   displayName: "ResolutionList",
 
+  getInitialState: function () {
+    return { data: [{ id: 1, name: "React", status: "Incomplete" }, { id: 2, name: "MongoDB", status: "Incomplete" }, { id: 3, name: "Express", status: "Incomplete" }] };
+  },
   render: function () {
     return React.createElement(
       "div",
       null,
       React.createElement(ResoulitionFilter, null),
-      React.createElement(ResolutionTable, { data: this.props.data }),
+      React.createElement(ResolutionTable, { data: this.state.data }),
       React.createElement(ResolutionAdd, null)
     );
   }
 });
 
-ReactDOM.render(React.createElement(ResolutionList, { data: resolutions }), document.getElementById('main'));
+ReactDOM.render(React.createElement(ResolutionList, null), document.getElementById('main'));
