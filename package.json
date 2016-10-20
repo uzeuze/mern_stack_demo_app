@@ -9,6 +9,7 @@
   "author": "Egemen Can Uze",
   "license": "ISC",
   "dependencies": {
+    "babel-preset-react": "^6.16.0",
     "express": "^4.14.0"
   }
 }
