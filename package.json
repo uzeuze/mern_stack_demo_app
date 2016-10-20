@@ -1,0 +1,14 @@
+{
+  "name": "learn_mern",
+  "version": "1.0.0",
+  "description": "learning MERN stack",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Egemen Can Uze",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
