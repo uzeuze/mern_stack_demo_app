@@ -125,14 +125,9 @@ var ResolutionList = React.createClass({
   getInitialState: function () {
     return { data: [{ id: 1, name: "React", status: "Incomplete" }, { id: 2, name: "MongoDB", status: "Incomplete" }, { id: 3, name: "Express", status: "Incomplete" }] };
   },
-  testResolution: function () {
-    var testResolution = { id: this.state.data.length + 1,
-      name: "Test Resolution",
-      status: "Complete" };
-    this.addResolution(testResolution);
-  },
   addResolution: function (resolution) {
     console.log('Adding resolution ' + resolution);
+    resolution.id = this.state.data.length + 1;
     var newData = this.state.data.slice();
     newData.push(resolution);
     this.setState({ data: newData });
@@ -143,12 +138,7 @@ var ResolutionList = React.createClass({
       null,
       React.createElement(ResoulitionFilter, null),
       React.createElement(ResolutionTable, { data: this.state.data }),
-      React.createElement(ResolutionAdd, { addResolution: this.addResolution }),
-      React.createElement(
-        'button',
-        { onClick: this.testResolution },
-        'Add Test Data'
-      )
+      React.createElement(ResolutionAdd, { addResolution: this.addResolution })
     );
   }
 });
