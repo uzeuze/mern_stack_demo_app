@@ -1,3 +1,39 @@
+var ResoulitionFilter = React.createClass({
+  displayName: 'ResoulitionFilter',
+
+  render: function () {
+    return React.createElement(
+      'div',
+      null,
+      'Filter'
+    );
+  }
+});
+
+var ResolutionTable = React.createClass({
+  displayName: 'ResolutionTable',
+
+  render: function () {
+    return React.createElement(
+      'div',
+      null,
+      'Table'
+    );
+  }
+});
+
+var ResolutionAdd = React.createClass({
+  displayName: 'ResolutionAdd',
+
+  render: function () {
+    return React.createElement(
+      'div',
+      null,
+      'Add'
+    );
+  }
+});
+
 var ResolutionList = React.createClass({
   displayName: 'ResolutionList',
 
@@ -5,7 +41,9 @@ var ResolutionList = React.createClass({
     return React.createElement(
       'div',
       null,
-      'Resolution List'
+      React.createElement(ResoulitionFilter, null),
+      React.createElement(ResolutionTable, null),
+      React.createElement(ResolutionAdd, null)
     );
   }
 });
