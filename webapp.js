@@ -1,24 +1,36 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 var app = express();
-
+var Resolution = require("./models/resolution");
 app.use(express.static('static'));
 app.use(bodyParser.json());
-var resolutions = [{ id: 1, name: "React", status: "Incomplete" },
- { id: 2, name: "MongoDB", status: "Incomplete" },
- { id: 3, name: "Express", status: "Incomplete" }
-]
+
+mongoose.connect("mongodb://localhost:27017/test");
+var db = mongoose.connection;
+db.on('error', (err) => {
+  console.error(`Connection error: ${err}`);
+  process.exit(1);
+});
+db.once('open', () => {
+  console.log('Connected to MongoDB server.');
+});
 
 app.get('/api/resolutions', function(req,res){
-  res.json(resolutions);
+  Resolution.find({}, function(err, resolutions){
+    if(err) { console.error(err);}
+    res.json(resolutions);
+  });
 });
 
 app.post('/api/resolutions/', function(req,res){
   console.log("Req body:", req.body);
-  var newResolution = req.body;
-  newResolution.id = resolutions.length + 1;
-  resolutions.push(newResolution);
-  res.json(resolutions);
+  var newResolution = Resolution(req.body);
+  newResolution.save(function(err, newRes){
+    if(err) {return console.error(err);}
+    console.log(newRes);
+    return res.json(newRes);
+  });
 });
 
 app.listen(3000, function(){

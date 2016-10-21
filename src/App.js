@@ -21,7 +21,7 @@ var ResolutionTable = React.createClass({
   render: function() {
     var resolutionRows = this.props.data.map(function(resolution){
       return (
-        <ResolutionRow key={resolution.id} resolution={resolution}/>
+        <ResolutionRow key={resolution._id} resolution={resolution}/>
       );
     });
     return (
@@ -101,8 +101,9 @@ var ResolutionList = React.createClass({
       data: JSON.stringify(resolution),
       success: function(data) {
         var resolution = data;
-        this.setState({data: data});
-        console.log('data : ' + data);
+        var newData = this.state.data.concat(resolution);
+        this.setState({data: newData});
+        console.log('data : ' + newData);
       }.bind(this),
       error: function(xhr, status, err) {
         console.log("Error adding bug:", err);
