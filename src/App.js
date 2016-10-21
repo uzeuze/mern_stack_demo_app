@@ -101,12 +101,10 @@ var ResolutionList = React.createClass({
       data: JSON.stringify(resolution),
       success: function(data) {
         var resolution = data;
-        // We're advised not to modify the state, it's immutable. So, make a copy.
-        var resolutionsModified = this.state.data.concat(resolution);
-        this.setState({data: resolutionsModified});
+        this.setState({data: data});
+        console.log('data : ' + data);
       }.bind(this),
       error: function(xhr, status, err) {
-        // ideally, show error to user.
         console.log("Error adding bug:", err);
       }
     });
