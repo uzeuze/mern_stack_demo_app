@@ -43,7 +43,10 @@ var ResolutionList = React.createClass({
     return ({data: []});
   },
   componentDidMount: function () {
-    $.ajax('/api/resolutions').done(function(data){
+    this.loadData({});
+  },
+  loadData: function(filter) {
+    $.ajax('/api/resolutions', {data: filter}).done(function(data){
       this.setState({data: data});
     }.bind(this));
   },
@@ -66,7 +69,7 @@ var ResolutionList = React.createClass({
   render: function () {
     return (
       <div>
-        <ResolutionFilter />
+        <ResolutionFilter submitHandler={this.loadData}/>
         <ResolutionTable data={this.state.data}/>
         <ResolutionAdd addResolution={this.addResolution}/>
       </div>

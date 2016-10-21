@@ -17,7 +17,10 @@ db.once('open', () => {
 });
 
 app.get('/api/resolutions', function(req,res){
-  Resolution.find({}, function(err, resolutions){
+  console.log("Query string ", req.query);
+  var filter = {};
+  if(req.query.status) {filter.status = req.query.status;}
+  Resolution.find(filter, function(err, resolutions){
     if(err) { console.error(err);}
     res.json(resolutions);
   });
