@@ -30985,20 +30985,7 @@ var ResolutionRow = React.createClass({
   displayName: 'ResolutionRow',
 
   render: function () {
-    return React.createElement(
-      'tr',
-      null,
-      React.createElement(
-        'td',
-        null,
-        this.props.resolution.name
-      ),
-      React.createElement(
-        'td',
-        null,
-        this.props.resolution.status
-      )
-    );
+    return React.createElement('tr', null, React.createElement('td', null, this.props.resolution.name), React.createElement('td', null, this.props.resolution.status));
   }
 });
 
@@ -31006,11 +30993,7 @@ var ResoulitionFilter = React.createClass({
   displayName: 'ResoulitionFilter',
 
   render: function () {
-    return React.createElement(
-      'div',
-      null,
-      'Filter'
-    );
+    return React.createElement('div', null, 'Filter');
   }
 });
 
@@ -31021,37 +31004,7 @@ var ResolutionTable = React.createClass({
     var resolutionRows = this.props.data.map(function (resolution) {
       return React.createElement(ResolutionRow, { key: resolution._id, resolution: resolution });
     });
-    return React.createElement(
-      'div',
-      null,
-      React.createElement(
-        'table',
-        null,
-        React.createElement(
-          'thead',
-          null,
-          React.createElement(
-            'tr',
-            null,
-            React.createElement(
-              'th',
-              null,
-              'Name'
-            ),
-            React.createElement(
-              'th',
-              null,
-              'Status'
-            )
-          )
-        ),
-        React.createElement(
-          'tbody',
-          null,
-          resolutionRows
-        )
-      )
-    );
+    return React.createElement('div', null, React.createElement('table', null, React.createElement('thead', null, React.createElement('tr', null, React.createElement('th', null, 'Name'), React.createElement('th', null, 'Status'))), React.createElement('tbody', null, resolutionRows)));
   }
 });
 
@@ -31078,27 +31031,17 @@ var ResolutionAdd = React.createClass({
     this.setState({ name: '', status: '' });
   },
   render: function () {
-    return React.createElement(
-      'div',
-      null,
-      React.createElement(
-        'form',
-        { name: 'resolutionAdd', onSubmit: this.handleSubmit },
-        React.createElement('input', {
-          type: 'text',
-          placeholder: 'Resolution Name',
-          value: this.state.name,
-          onChange: this.handleNameChange
-        }),
-        React.createElement('input', {
-          type: 'text',
-          placeholder: 'Status',
-          value: this.state.status,
-          onChange: this.handleStatusChange
-        }),
-        React.createElement('input', { type: 'submit', value: 'Add Resolution' })
-      )
-    );
+    return React.createElement('div', null, React.createElement('form', { name: 'resolutionAdd', onSubmit: this.handleSubmit }, React.createElement('input', {
+      type: 'text',
+      placeholder: 'Resolution Name',
+      value: this.state.name,
+      onChange: this.handleNameChange
+    }), React.createElement('input', {
+      type: 'text',
+      placeholder: 'Status',
+      value: this.state.status,
+      onChange: this.handleStatusChange
+    }), React.createElement('input', { type: 'submit', value: 'Add Resolution' })));
   }
 });
 
@@ -31130,13 +31073,7 @@ var ResolutionList = React.createClass({
     });
   },
   render: function () {
-    return React.createElement(
-      'div',
-      null,
-      React.createElement(ResoulitionFilter, null),
-      React.createElement(ResolutionTable, { data: this.state.data }),
-      React.createElement(ResolutionAdd, { addResolution: this.addResolution })
-    );
+    return React.createElement('div', null, React.createElement(ResoulitionFilter, null), React.createElement(ResolutionTable, { data: this.state.data }), React.createElement(ResolutionAdd, { addResolution: this.addResolution }));
   }
 });
 
